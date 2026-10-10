@@ -6,7 +6,7 @@ To run the app, open a terminal in the project folder and use `npm install` the 
 
 I wrote this software to learn how a web framework creates dynamic pages. I also wanted to practice Express routes, EJS templates, form processing, validation, and sending JavaScript data to HTML pages.
 
-[Software Demo Video](VIDEO_LINK_HERE)
+[Software Demo Video](https://youtu.be/Eq56GPaGOSc)
 
 # Web Pages
 
