@@ -1,0 +1,15 @@
+{
+  "name": "expense-tracker-web-app",
+  "version": "1.0.0",
+  "description": "A small expense tracker web app created with Node.js, Express, and EJS.",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "node --watch src/app.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^5.1.0"
+  }
+}

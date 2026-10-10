@@ -1,0 +1,46 @@
+<%- include("partials/header") %>
+
+<div class="page-heading">
+  <div>
+    <p class="eyebrow">New record</p>
+    <h1>Add an expense</h1>
+    <p>Enter the information below. All fields are required.</p>
+  </div>
+</div>
+
+<% if (errors.length > 0) { %>
+  <section class="error-box" role="alert">
+    <strong>Please correct the following:</strong>
+    <ul>
+      <% errors.forEach((error) => { %>
+        <li><%= error %></li>
+      <% }); %>
+    </ul>
+  </section>
+<% } %>
+
+<section class="panel form-panel">
+  <form action="/expenses" method="post">
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input id="description" name="description" type="text" value="<%= formData.description %>" placeholder="Example: Groceries">
+    </div>
+
+    <div class="form-group">
+      <label for="category">Category</label>
+      <input id="category" name="category" type="text" value="<%= formData.category %>" placeholder="Example: Food">
+    </div>
+
+    <div class="form-group">
+      <label for="amount">Amount</label>
+      <input id="amount" name="amount" type="number" min="0.01" step="0.01" value="<%= formData.amount %>" placeholder="0.00">
+    </div>
+
+    <div class="form-actions">
+      <button type="submit">Save expense</button>
+      <a class="text-link" href="/expenses">Cancel</a>
+    </div>
+  </form>
+</section>
+
+<%- include("partials/footer") %>

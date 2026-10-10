@@ -1,0 +1,45 @@
+<%- include("partials/header") %>
+
+<section class="hero">
+  <p class="eyebrow">Personal expense summary</p>
+  <h1>Understand where your money goes</h1>
+  <p>Add expenses, organize them by category, and review your totals.</p>
+  <a class="button" href="/expenses/new">Add a new expense</a>
+</section>
+
+<section class="summary-grid" aria-label="Expense summary">
+  <article class="summary-card">
+    <span>Number of expenses</span>
+    <strong><%= expenseCount %></strong>
+  </article>
+  <article class="summary-card">
+    <span>Total amount</span>
+    <strong><%= formatCurrency(totalAmount) %></strong>
+  </article>
+</section>
+
+<section class="panel">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">Dynamic information</p>
+      <h2>Totals by category</h2>
+    </div>
+    <a href="/expenses">View all expenses</a>
+  </div>
+
+  <% const categories = Object.keys(categoryTotals); %>
+  <% if (categories.length === 0) { %>
+    <p class="empty-state">No expenses have been added.</p>
+  <% } else { %>
+    <div class="category-list">
+      <% categories.forEach((category) => { %>
+        <div>
+          <span><%= category %></span>
+          <strong><%= formatCurrency(categoryTotals[category]) %></strong>
+        </div>
+      <% }); %>
+    </div>
+  <% } %>
+</section>
+
+<%- include("partials/footer") %>

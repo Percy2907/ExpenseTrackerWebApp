@@ -1,0 +1,71 @@
+<%- include("partials/header") %>
+
+<div class="page-heading">
+  <div>
+    <p class="eyebrow">Expense records</p>
+    <h1>Expense list</h1>
+  </div>
+  <a class="button" href="/expenses/new">Add expense</a>
+</div>
+
+<% if (message) { %>
+  <p class="message" role="status"><%= message %></p>
+<% } %>
+
+<section class="panel filter-panel">
+  <form action="/expenses" method="get">
+    <label for="category">Filter by category</label>
+    <div class="filter-row">
+      <select id="category" name="category">
+        <option value="">All categories</option>
+        <% categories.forEach((category) => { %>
+          <option value="<%= category %>" <%= selectedCategory === category ? "selected" : "" %>><%= category %></option>
+        <% }); %>
+      </select>
+      <button type="submit">Apply filter</button>
+      <a class="text-link" href="/expenses">Clear</a>
+    </div>
+  </form>
+</section>
+
+<section class="panel">
+  <% if (expenses.length === 0) { %>
+    <p class="empty-state">No expenses match this category.</p>
+  <% } else { %>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Amount</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% expenses.forEach((expense) => { %>
+            <tr>
+              <td><%= expense.id %></td>
+              <td><%= expense.description %></td>
+              <td><span class="category-badge"><%= expense.category %></span></td>
+              <td><%= formatCurrency(expense.amount) %></td>
+              <td>
+                <form action="/expenses/<%= expense.id %>/delete" method="post">
+                  <button class="danger-button" type="submit">Delete</button>
+                </form>
+              </td>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+  <% } %>
+
+  <div class="list-total">
+    <span>Displayed total</span>
+    <strong><%= formatCurrency(filteredTotal) %></strong>
+  </div>
+</section>
+
+<%- include("partials/footer") %>
